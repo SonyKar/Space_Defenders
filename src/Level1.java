@@ -32,7 +32,7 @@ class Level1 extends JPanel {
 
         enemy[0].moveEnemy(enemy, 10);
 
-        Player player = new Player(3, 100, 200);
+        Player player = new Player(3, 100, 200, 15);
         this.add(player);
 
         Main.mainFrame.addKeyListener(new KeyAdapter() {
@@ -40,15 +40,17 @@ class Level1 extends JPanel {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    player.setLocation(player.getX() + 10, player.getY());
+                    player.playerTurnRight.start();
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    player.setLocation(player.getX() - 10, player.getY());
+                    player.playerTurnLeft.start();
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
+                player.playerTurnLeft.stop();
+                player.playerTurnRight.stop();
             }
         });
     }
