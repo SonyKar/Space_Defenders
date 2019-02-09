@@ -3,7 +3,6 @@ import java.awt.*;
 
 public class Entity extends JLabel{
     private int health, width, height;
-    Timer timer;
 
     Entity() {
         super();

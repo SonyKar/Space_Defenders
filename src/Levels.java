@@ -1,8 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,10 +25,9 @@ public class Levels extends JPanel {
         Player player = new Player(3, 100, 100, 10);
         this.add(player);
 
-        Main.mainFrame.addKeyListener(new KeyAdapter() {
+        Main.mainFrame.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.playerTurnRight.start();
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -38,9 +37,15 @@ public class Levels extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
                 player.playerTurnLeft.stop();
                 player.playerTurnRight.stop();
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+
+                }
             }
         });
     }

@@ -16,7 +16,7 @@ class Player extends Entity{
         player.speed = speed;
 
         player.setIcon(changeImage("./img/player.png", width, height));
-        player.setBounds(Main.mainFrame.getWidth() / 2 - width / 2, Main.mainFrame.getHeight() - 150, width, height);
+        player.setBounds(Main.mainFrame.getWidth() / 2 - width / 2, Main.mainFrame.getHeight() - height - 50, width, height);
 
         playerTurnLeft = new Timer(5, e12 -> {
             if (player.getX() > 0) {
@@ -24,7 +24,7 @@ class Player extends Entity{
             } else playerTurnLeft.stop();
         });
         playerTurnRight = new Timer(5, e12 -> {
-            if (player.getX() <= Main.mainFrame.getWidth() - 120) {
+            if (player.getX() <= Main.mainFrame.getWidth() - width - 20) {
                 player.setLocation(player.getX() + speed, player.getY());
             } else playerTurnRight.stop();
         });

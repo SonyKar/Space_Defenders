@@ -3,6 +3,8 @@ import javax.swing.*;
 class Enemy extends Entity {
     private Boolean isEnd;
 
+    Timer movingEnemies;
+
     Enemy(int health, int width, int height) {
         super();
 
@@ -18,8 +20,7 @@ class Enemy extends Entity {
     }
 
     void moveEnemy(Enemy[] enemy, int n) {
-
-        timer = new Timer(5, e -> {
+        movingEnemies = new Timer(5, e -> {
             if (enemy[0].getX() == 700) isEnd = true;
             else if (enemy[0].getX() == 0) isEnd = false;
             if (!isEnd) {
@@ -32,9 +33,9 @@ class Enemy extends Entity {
                     enemy[i].setLocation(enemy[i].getX() - 1, enemy[i].getY());
                 }
             }
-            else timer.stop();
+            else movingEnemies.stop();
         });
 
-        timer.start();
+        movingEnemies.start();
     }
 }
