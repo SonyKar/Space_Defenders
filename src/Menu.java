@@ -13,7 +13,7 @@ class Menu extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         try{
-            g.drawImage(ImageIO.read(new File("img/background.jpg")), 0, 0, 600, 600,null);
+            g.drawImage(ImageIO.read(new File("./img/menuBackground.jpg")), 0, 0, 600, 600,null);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -24,12 +24,12 @@ class Enemy extends Entity {
             else if (enemy[0].getX() == 0) isEnd = false;
             if (!isEnd) {
                 for(int i = 0; i < n; i++) {
-                    enemy[i].setLocation(enemy[i].getX() + 10, enemy[i].getY());
+                    enemy[i].setLocation(enemy[i].getX() + 1, enemy[i].getY());
                 }
             }
             else if(isEnd) {
                 for(int i = 0; i < n; i++) {
-                    enemy[i].setLocation(enemy[i].getX() - 10, enemy[i].getY());
+                    enemy[i].setLocation(enemy[i].getX() - 1, enemy[i].getY());
                 }
             }
             else timer.stop();

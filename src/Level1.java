@@ -1,14 +1,21 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 class Level1 extends JPanel {
 
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        g.setColor(new Color(255, 0, 0));
-//        g.fillRect(0,0, Main.mainFrame.getWidth(), Main.mainFrame.getHeight());
-//    } Для заднего фона
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        try{
+            g.drawImage(ImageIO.read(new File("./img/background.png")), 0, 0, Main.mainFrame.getWidth(), Main.mainFrame.getHeight(),null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     Level1() {
         super();
