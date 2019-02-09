@@ -2,15 +2,17 @@ import javax.swing.*;
 
 class Enemy extends Entity {
     private Boolean isEnd;
+    private int health;
 
-    Timer movingEnemies;
+    private Timer movingEnemies;
 
-    Enemy(int health, int width, int height) {
+    Enemy(int health, int width, int height, int speed) {
         super();
 
-        this.setHealth(health);
+        this.health = health;
         this.setWidth(width);
         this.setHeight(height);
+        this.setSpeed(speed);
 
         switch (health) {
             case 1:
@@ -25,12 +27,12 @@ class Enemy extends Entity {
             else if (enemy[0].getX() == 0) isEnd = false;
             if (!isEnd) {
                 for(int i = 0; i < n; i++) {
-                    enemy[i].setLocation(enemy[i].getX() + 1, enemy[i].getY());
+                    enemy[i].setLocation(enemy[i].getX() + enemy[i].getSpeed(), enemy[i].getY());
                 }
             }
             else if(isEnd) {
                 for(int i = 0; i < n; i++) {
-                    enemy[i].setLocation(enemy[i].getX() - 1, enemy[i].getY());
+                    enemy[i].setLocation(enemy[i].getX() - enemy[i].getSpeed(), enemy[i].getY());
                 }
             }
             else movingEnemies.stop();

@@ -1,40 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LaserBeam extends JLabel {
+public class LaserBeam extends Entity {
 
-  private int width = 10, height = 30, damage;
+  private int damage;
 
   LaserBeam(int damage) {
     super();
-    ImageIcon laserBeam = new ImageIcon(new ImageIcon("../img/laser.png").getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
-    setDamage(damage);
-    this.setIcon(laserBeam);
+
+    this.damage = damage;
+    this.setIcon(changeImage("./img/laser.png", 15, 75));
     this.setSize(new Dimension(15, 75));
   }
 
-  @Override
-  public int getWidth() {
-    return width;
-  }
+  public static boolean checkHit(LaserBeam bullet, Enemy enemy) {
+    Rectangle shotEnemy = new Rectangle(enemy.getBounds());
 
-  @Override
-  public int getHeight() {
-    return height;
-  }
-
-  public int getDamage() {
-    return damage;
-  }
-
-  public void setDamage(int damage) {
-    this.damage = damage;
-  }
-
-  public static boolean ceckHit(JLabel Bullet, JLabel Enemy) {
-
-    Rectangle shotEnemy = new Rectangle(Enemy.getBounds());
-    Rectangle checkRes = SwingUtilities.computeIntersection(Bullet.getX(), Bullet.getY(), Bullet.getWidth(), Bullet.getHeight(), shotEnemy);
+    Rectangle checkRes = SwingUtilities.computeIntersection(bullet.getX(), bullet.getY(), bullet.getWidth(), bullet.getHeight(), shotEnemy);
 
     return (checkRes.getWidth() > 0 && checkRes.getHeight() > 0);
   }
