@@ -32,7 +32,7 @@ class Level1 extends JPanel {
 
         enemy[0].moveEnemy(enemy, 10);
 
-        Player player = new Player(3, 100, 200, 15);
+        Player player = new Player(3, 100, 100, 10);
         this.add(player);
 
         Main.mainFrame.addKeyListener(new KeyAdapter() {

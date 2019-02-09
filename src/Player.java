@@ -16,7 +16,7 @@ class Player extends Entity{
         player.speed = speed;
 
         player.setIcon(changeImage("./img/player.png", width, height));
-        player.setBounds(Main.mainFrame.getWidth() / 2 - width / 2, Main.mainFrame.getHeight() - height, width, height);
+        player.setBounds(Main.mainFrame.getWidth() / 2 - width / 2, Main.mainFrame.getHeight() - 150, width, height);
 
         playerTurnLeft = new Timer(5, e12 -> {
             if (player.getX() > 0) {
