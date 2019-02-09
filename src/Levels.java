@@ -44,10 +44,11 @@ public class Levels extends JPanel {
             @Override
             public void keyTyped(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    LaserBeam laser = new LaserBeam(1);
+
 
                 }
             }
+
         });
     }
 }

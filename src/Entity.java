@@ -19,4 +19,6 @@ public class Entity extends JLabel{
     ImageIcon changeImage(String path, int width, int height) {
         return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
     }
+
+
 }
