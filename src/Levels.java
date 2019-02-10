@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Levels extends JPanel {
+    Enemy[] enemy;
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         try{
@@ -46,7 +48,7 @@ public class Levels extends JPanel {
                     player.playerTurnLeft.stop();
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    player.shoot(new LaserBeam(1));
+                    player.shoot(new LaserBeam(1, 10, enemy));
                 }
             }
         });

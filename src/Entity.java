@@ -12,11 +12,11 @@ public class Entity extends JLabel{
 
     void setHeight(int height) { this.height = height; }
 
-    public int getSpeed() {
+    int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    void setSpeed(int speed) {
         this.speed = speed;
     }
 

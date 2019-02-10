@@ -29,7 +29,9 @@ class Player extends Entity{
     }
 
     void shoot(LaserBeam laser) {
-        laser.setLocation(this.getX(), this.getY());
+        laser.setLocation(this.getX() + this.getWidth() / 2, this.getY() - 30);
         this.getParent().add(laser);
+        laser.shooting.start();
+        laser = null;
     }
 }
