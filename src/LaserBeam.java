@@ -18,10 +18,11 @@ public class LaserBeam extends Entity {
     shooting = new Timer(5, e -> {
         for (int i = 0; i < enemy.length; i++)
             if(checkHit(laser, enemy[i])) System.out.println("Enemy " + i + " hit"); // Check if out bullet hit an enemy
-        if (laser.getY() > 10) {
+        if (laser.getY() > -laser.getHeight()) {
             laser.setLocation(laser.getX(), laser.getY() - laser.getSpeed()); // Moving bullet up, until it gets to 10 y coordinate
         } else {
             laser.shooting.stop(); // If it gets to 10 y coordinate, then stop moving
+            laser.getParent().remove(laser);
         }
     });
   }
