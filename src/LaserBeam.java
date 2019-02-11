@@ -1,20 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class LaserBeam extends Entity {
+class LaserBeam extends Entity {
 
   private int damage;
   Timer shooting;
 
   LaserBeam(int damage, int speed, Enemy[] enemy) {
     super();
-    LaserBeam laser = this;
 
     this.setSpeed(speed);
     this.damage = damage;
-    this.setIcon(changeImage("./img/laser.png", 15, 75));
-    this.setSize(new Dimension(15, 75));
+    this.setWidth(15);
+    this.setHeight(75);
 
+    this.setIcon(changeImage("./img/laser.png", this.getWidth(), this.getHeight()));
+    this.setSize(new Dimension(this.getWidth(), this.getHeight()));
+
+    LaserBeam laser = this;
     shooting = new Timer(5, e -> {
         for (int i = 0; i < enemy.length; i++)
             if(checkHit(laser, enemy[i])) System.out.println("Enemy " + i + " hit"); // Check if out bullet hit an enemy

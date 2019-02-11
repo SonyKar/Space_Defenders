@@ -12,6 +12,16 @@ public class Entity extends JLabel{
 
     void setHeight(int height) { this.height = height; }
 
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
     int getSpeed() {
         return speed;
     }

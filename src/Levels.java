@@ -25,7 +25,7 @@ public class Levels extends JPanel {
         this.setLayout(null);
         Main.mainFrame.setFocusable(true);
 
-        Player player = new Player(100, 100, 10);
+        Player player = new Player(10);
         this.add(player);
 
         Main.mainFrame.addKeyListener(new KeyAdapter() {
@@ -33,9 +33,11 @@ public class Levels extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.playerTurnRight.start();
+                    player.setIcon(player.changeImage("./img/player_right.png", player.getWidth(), player.getHeight()));
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     player.playerTurnLeft.start();
+                    player.setIcon(player.changeImage("./img/player_left.png", player.getWidth(), player.getHeight()));
                 }
             }
 
@@ -43,9 +45,11 @@ public class Levels extends JPanel {
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.playerTurnRight.stop();
+                    player.setIcon(player.changeImage("./img/player.png", player.getWidth(), player.getHeight()));
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     player.playerTurnLeft.stop();
+                    player.setIcon(player.changeImage("./img/player.png", player.getWidth(), player.getHeight()));
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
                     player.shoot(new LaserBeam(1, 10, enemy));
