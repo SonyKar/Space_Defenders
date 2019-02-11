@@ -7,15 +7,14 @@ class Player extends Entity{
     Player(int speed) {
         super();
 
+        this.setWidth(75);
+        this.setHeight(150);
+        this.setSpeed(speed);
+
+        this.setIcon(Main.player);
+        this.setBounds(Main.mainFrame.getWidth() / 2 - this.getWidth() / 2, Main.mainFrame.getHeight() - this.getHeight() - 50, this.getWidth(), this.getHeight());
+
         Player player = this;
-
-        player.setWidth(75);
-        player.setHeight(150);
-        player.setSpeed(speed);
-
-        player.setIcon(changeImage("./img/player.png", player.getWidth(), player.getHeight()));
-        player.setBounds(Main.mainFrame.getWidth() / 2 - player.getWidth() / 2, Main.mainFrame.getHeight() - player.getHeight() - 50, player.getWidth(), player.getHeight());
-
         playerTurnLeft = new Timer(5, e12 -> {
             if (player.getX() > 0) {
                 player.setLocation(player.getX() - speed, player.getY());

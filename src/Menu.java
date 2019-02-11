@@ -38,7 +38,7 @@ class Menu extends JPanel{
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.refresh(new Level1());
+                Main.changeScreen(new Level1());
             }
         });
         start.addMouseListener(new MouseAdapter() {

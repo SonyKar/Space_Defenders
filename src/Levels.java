@@ -5,9 +5,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Levels extends JPanel {
-    Enemy[] enemy;
+    static ArrayList<Enemy> enemy = new ArrayList<>();
+    private Timer movingEnemies;
+    private boolean isEnd;
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -16,6 +19,28 @@ public class Levels extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    void moveEnemy() {
+        movingEnemies = new Timer(5, e -> {
+            if(Levels.enemy.size() != 0) {
+                if (Levels.enemy.get(Levels.enemy.size() - 1).getX() >= Levels.enemy.get(Levels.enemy.size() - 1).getParent().getWidth() - Levels.enemy.get(Levels.enemy.size() - 1).getWidth()) isEnd = true;
+                else if (Levels.enemy.get(0).getX() <= 0) isEnd = false;
+                if (!isEnd) {
+                    for(int i = 0; i < Levels.enemy.size(); i++) {
+                        Levels.enemy.get(i).setLocation(Levels.enemy.get(i).getX() + Levels.enemy.get(i).getSpeed(), Levels.enemy.get(i).getY());
+                    }
+                }
+                else if(isEnd) {
+                    for(int i = 0; i < Levels.enemy.size(); i++) {
+                        Levels.enemy.get(i).setLocation(Levels.enemy.get(i).getX() - Levels.enemy.get(i).getSpeed(), Levels.enemy.get(i).getY());
+                    }
+                }
+            }
+            else movingEnemies.stop();
+        });
+
+        movingEnemies.start();
     }
 
     Levels() {
@@ -33,11 +58,11 @@ public class Levels extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.playerTurnRight.start();
-                    player.setIcon(player.changeImage("./img/player_right.png", player.getWidth(), player.getHeight()));
+                    player.setIcon(Main.player_right);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     player.playerTurnLeft.start();
-                    player.setIcon(player.changeImage("./img/player_left.png", player.getWidth(), player.getHeight()));
+                    player.setIcon(Main.player_left);
                 }
             }
 
@@ -45,14 +70,14 @@ public class Levels extends JPanel {
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.playerTurnRight.stop();
-                    player.setIcon(player.changeImage("./img/player.png", player.getWidth(), player.getHeight()));
+                    player.setIcon(Main.player);
                 }
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     player.playerTurnLeft.stop();
-                    player.setIcon(player.changeImage("./img/player.png", player.getWidth(), player.getHeight()));
+                    player.setIcon(Main.player);
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    player.shoot(new LaserBeam(1, 10, enemy));
+                    player.shoot(new LaserBeam(1, 10));
                 }
             }
         });

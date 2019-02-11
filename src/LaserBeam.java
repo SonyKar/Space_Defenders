@@ -6,7 +6,7 @@ class LaserBeam extends Entity {
   private int damage;
   Timer shooting;
 
-  LaserBeam(int damage, int speed, Enemy[] enemy) {
+  LaserBeam(int damage, int speed) {
     super();
 
     this.setSpeed(speed);
@@ -14,13 +14,32 @@ class LaserBeam extends Entity {
     this.setWidth(15);
     this.setHeight(75);
 
-    this.setIcon(changeImage("./img/laser.png", this.getWidth(), this.getHeight()));
+    this.setIcon(Main.laser);
     this.setSize(new Dimension(this.getWidth(), this.getHeight()));
 
     LaserBeam laser = this;
     shooting = new Timer(5, e -> {
-        for (int i = 0; i < enemy.length; i++)
-            if(checkHit(laser, enemy[i])) System.out.println("Enemy " + i + " hit"); // Check if out bullet hit an enemy
+        for (int i = 0; i < Levels.enemy.size(); i++)
+            if(checkHit(laser, Levels.enemy.get(i))) {
+                Enemy currentEnemy = Levels.enemy.get(i);
+                laser.getParent().remove(laser);
+
+                if (currentEnemy.isDead()) {
+                    currentEnemy.setIcon(Main.explode);
+                    Main.refresh();
+                    Levels.enemy.remove(i);
+                    new Thread(() -> {
+                        try  { Thread.sleep( 1000 ); }
+                        catch (InterruptedException ie)  { ie.printStackTrace(); }
+                        currentEnemy.getParent().remove(currentEnemy);
+                        Main.refresh();
+                    }).start();
+                } else {
+                    Main.refresh();
+                }
+
+                laser.shooting.stop();
+            }
         if (laser.getY() > -laser.getHeight()) {
             laser.setLocation(laser.getX(), laser.getY() - laser.getSpeed()); // Moving bullet up, until it gets to 10 y coordinate
         } else {

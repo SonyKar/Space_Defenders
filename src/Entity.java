@@ -30,9 +30,5 @@ public class Entity extends JLabel{
         this.speed = speed;
     }
 
-    ImageIcon changeImage(String path, int width, int height) {
-        return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
-    }
-
 
 }
