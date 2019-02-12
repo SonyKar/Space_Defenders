@@ -19,6 +19,10 @@ class Menu extends JPanel{
         }
     }
 
+    void initMenu() {
+        this.addButtons();
+    }
+
     void addButtons() {
         try {
             Thread.sleep(1000);
@@ -45,9 +49,10 @@ class Menu extends JPanel{
 
         this.setLayout(null);
 
-        JLabel logo1 = new JLabel("Space");
-        logo1.setBounds(Main.mainFrame.getWidth() / 2, 20, 390, 300);
-        this.add(logo1);
+        JLabel logo = new JLabel();
+        logo.setIcon(Main.logo);
+        logo.setBounds(this.getWidth() / 2 - 195, 100, 390, 90);
+        this.add(logo);
 
         start.setFocusPainted(false);
         start.setBounds(getWidth()/2 - 45, getHeight()/2 - 60, 80, 35);
