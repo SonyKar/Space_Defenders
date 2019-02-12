@@ -38,22 +38,18 @@ class LaserBeam extends Entity {
                         catch (InterruptedException ie)  { ie.printStackTrace(); }
                         currentEnemy.getParent().remove(currentEnemy);
                         Main.refresh();
+                        if(Levels.enemy.size() == 0) {
+                            Main.changeScreen(new EndScreen("success"));
+                        }
                     }).start();
                 } else {
                     Main.refresh();
                 }
 
               laser.shooting.stop();
-
-              if(Levels.enemy.size() == 0) {
-                Main.changeScreen(new EndScreen("success"));
-              }
             }
         if (laser.getY() > -laser.getHeight()) {
             laser.setLocation(laser.getX(), laser.getY() - laser.getSpeed()); // Moving bullet up, until it gets to 10 y coordinate
-        } else {
-            laser.shooting.stop(); // If it gets to 10 y coordinate, then stop moving
-            laser.getParent().remove(laser);
         }
     });
   }
