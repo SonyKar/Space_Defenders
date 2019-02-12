@@ -21,8 +21,13 @@ class LaserBeam extends Entity {
     shooting = new Timer(5, e -> {
         for (int i = 0; i < Levels.enemy.size(); i++)
             if(checkHit(laser, Levels.enemy.get(i))) {
-                Enemy currentEnemy = Levels.enemy.get(i);
-                laser.getParent().remove(laser);
+                Enemy currentEnemy = Levels.enemy.get(i); // getting enemy which was damaged
+
+//                Adding score
+                Main.score += 100;
+                Levels.score.setText("Score " + Main.score);
+
+                laser.getParent().remove(laser); // removing laser from screen
 
                 if (currentEnemy.isDead()) {
                     currentEnemy.setIcon(Main.explode);

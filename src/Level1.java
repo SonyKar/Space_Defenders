@@ -4,7 +4,7 @@ class Level1 extends Levels {
 
         for(int i = 0; i < 10; i++) {
             enemy.add(new Enemy(1, 5));
-            enemy.get(i).setLocation(i * 70, 20);
+            enemy.get(i).setLocation(i * 70, 40);
             this.add(enemy.get(i));
         }
 

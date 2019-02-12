@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Levels extends JPanel {
     static ArrayList<Enemy> enemy = new ArrayList<>();
+    static JLabel score = new JLabel("Score: " + Main.score);
     private Timer movingEnemies;
     private boolean isEnd;
 
@@ -49,6 +50,20 @@ public class Levels extends JPanel {
         Main.mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(null);
         Main.mainFrame.setFocusable(true);
+
+        JPanel info = new JPanel();
+        info.setLayout(new GridLayout(1, 3));
+        info.setBounds(0, 0, Main.mainFrame.getWidth(), 30);
+        info.setBackground(new Color(30, 30, 30));
+
+        score.setBounds(Main.mainFrame.getWidth(), 2, 250, 20);
+        score.setForeground(Color.white);
+        score.setFont(score.getFont().deriveFont(20f));
+
+        info.add(new JLabel(""));
+        info.add(new JLabel(""));
+        info.add(score);
+        this.add(info);
 
         Player player = new Player(10);
         this.add(player);
