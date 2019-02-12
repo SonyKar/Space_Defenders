@@ -103,5 +103,7 @@ class Menu extends JPanel{
                 exit.setContentAreaFilled(false);
             }
         });
+        this.add(exit);
+        this.add(start);
     }
 }

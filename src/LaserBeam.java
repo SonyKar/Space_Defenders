@@ -43,7 +43,11 @@ class LaserBeam extends Entity {
                     Main.refresh();
                 }
 
-                laser.shooting.stop();
+              laser.shooting.stop();
+
+              if(Levels.enemy.size() == 0) {
+                Main.changeScreen(new EndScreen("success"));
+              }
             }
         if (laser.getY() > -laser.getHeight()) {
             laser.setLocation(laser.getX(), laser.getY() - laser.getSpeed()); // Moving bullet up, until it gets to 10 y coordinate

@@ -8,7 +8,7 @@ public class Main {
 //    start Textures
 
 //    General
-    static ImageIcon logo = new ImageIcon(new ImageIcon("./img/logo.png").getImage().getScaledInstance(390, 90, Image.SCALE_DEFAULT));
+    static ImageIcon logo = new ImageIcon(new ImageIcon("./img/logo.png").getImage().getScaledInstance(390, 300, Image.SCALE_DEFAULT));
 
 //    enemies
     static ImageIcon enemy1 = new ImageIcon(new ImageIcon("./img/enemy1.png").getImage().getScaledInstance(50, 75, Image.SCALE_DEFAULT));
@@ -42,15 +42,16 @@ public class Main {
         mainFrame.setLocationByPlatform(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Menu menu = new Menu();
+
+        mainFrame.setContentPane(menu);
+
         mainFrame.setPreferredSize(new Dimension(800, 600));
         mainFrame.pack();
 
-        Menu menu = new Menu();
-        mainFrame.setContentPane(menu);
-
         mainFrame.setVisible(true);
 
-        menu.initMenu();
+        menu.addButtons();
 
     }
 }
